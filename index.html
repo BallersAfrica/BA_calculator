@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BA Discount Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #calculator {
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BA Discount Calculator</h1>
+    <div id="calculator">
+        <label for="discount">Enter Discount (%)</label>
+        <input type="number" id="discount" placeholder="Enter discount percentage">
+        <br><br>
+        <label for="amountPaid">Amount Paid with Discount</label>
+        <input type="number" id="amountPaid" placeholder="Enter amount paid with discount">
+        <br><br>
+        <button onclick="calculateTotal()">Calculate Total Without Discount</button>
+        <br><br>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            const discountPercentage = parseFloat(document.getElementById("discount").value);
+            const amountPaid = parseFloat(document.getElementById("amountPaid").value);
+
+            if (isNaN(discountPercentage) || isNaN(amountPaid)) {
+                document.getElementById("result").innerHTML = "Please enter valid numbers.";
+            } else {
+                const amountWithoutDiscount = (amountPaid * 100) / (100 - discountPercentage);
+
+                // Format the result with commas for thousands
+                const formattedAmount = amountWithoutDiscount.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+
+                document.getElementById("result").innerHTML = `Total Amount without Discount: UGX${formattedAmount}`;
+            }
+        }
+    </script>
+</body>
+</html>
